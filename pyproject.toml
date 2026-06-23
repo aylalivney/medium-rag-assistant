@@ -1,2 +1,14 @@
+[project]
+name = "medium-rag-assistant"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+dependencies = [
+    "python-dotenv",
+    "langchain-openai",
+    "pinecone",
+    "pandas"
+]
+
 [tool.vercel]
 entrypoint = "api.prompt:handler"
