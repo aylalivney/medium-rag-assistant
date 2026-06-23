@@ -19,7 +19,7 @@ Always explain your answer using the given context.
 
 
 class handler(BaseHTTPRequestHandler):
-        def do_GET(self):
+    def do_GET(self):
         response = {
             "chunk_size": 512,
             "overlap_ratio": 0.2,
