@@ -23,6 +23,18 @@ paraphrasing the relevant article passage or metadata when helpful.
 
 
 class handler(BaseHTTPRequestHandler):
+        def do_GET(self):
+        response = {
+            "chunk_size": 512,
+            "overlap_ratio": 0.2,
+            "top_k": 7
+        }
+
+        self.send_response(200)
+        self.send_header("Content-type", "application/json; charset=utf-8")
+        self.end_headers()
+        self.wfile.write(json.dumps(response).encode("utf-8"))
+        
     def do_POST(self):
         content_length = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(content_length)
