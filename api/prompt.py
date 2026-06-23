@@ -3,8 +3,6 @@ import json
 import os
 
 from dotenv import load_dotenv
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from pinecone import Pinecone
 
 load_dotenv()
 
@@ -34,12 +32,14 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Content-type", "application/json; charset=utf-8")
         self.end_headers()
         self.wfile.write(json.dumps(response).encode("utf-8"))
-        
+
     def do_POST(self):
         content_length = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(content_length)
 
         try:
+            from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+            from pinecone import Pinecone
             data = json.loads(body)
             question = data.get("question", "")
             if not question:
